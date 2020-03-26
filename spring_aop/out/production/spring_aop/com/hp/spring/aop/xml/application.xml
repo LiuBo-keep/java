@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context" xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd http://www.springframework.org/schema/aop
+ http://www.springframework.org/schema/aop/spring-aop-4.2.xsd
+  http://www.springframework.org/schema/tx
+  http://www.springframework.org/schema/tx/spring-tx-4.2.xsd ">
+
+    <!--增强的目标类-->
+    <bean name="user" class="com.hp.spring.aop.xml.bean.User"></bean>
+    <!--包含增强内容的通知类-->
+    <bean name="myadvice" class="com.hp.spring.aop.xml.advice.MyAdvice"></bean>
+
+    <!--配置aop操作-->
+    <aop:config>
+        <!--配置切入点-->
+        <aop:pointcut id="pointcatadd" expression="execution(* com.hp.spring.aop.xml.bean.User.add(..))"></aop:pointcut>
+        <aop:pointcut id="pointcatdelete" expression="execution(* com.hp.spring.aop.xml.bean.User.delete(..))"></aop:pointcut>
+        <aop:pointcut id="pointcatupdate" expression="execution(* com.hp.spring.aop.xml.bean.User.updata(..))"></aop:pointcut>
+        <!--配置切面-->
+        <aop:aspect ref="myadvice">
+            <!--method代表在通知类使用哪个方法作为前置-->
+            <!--pointcat-ref代表前面所指的要增强的方法的切入点名称-->
+            <aop:before method="before" pointcut-ref="pointcatadd"></aop:before>
+            <aop:after method="after" pointcut-ref="pointcatdelete"></aop:after>
+            <aop:around method="rount" pointcut-ref="pointcatupdate"></aop:around>
+        </aop:aspect>
+    </aop:config>
+</beans>
