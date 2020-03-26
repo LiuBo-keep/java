@@ -25,7 +25,7 @@ public class Recv {
         //通过连接获取一个通道(通过通道获取一个对象操作vhost数据库)
         Channel channel=connection.createChannel();
 
-        //创建队列（例如在mysql数据库中创建表一样）
+        //创建队列：申明队列(如果存在就不创建)（例如在mysql数据库中创建表一样）
         /*
          *参数解释：
          * 参数1：queue 消息队列名称
