@@ -16,6 +16,9 @@
         <fileset id="fileset" name="Application" removed="false">
           <file>file://$MODULE_DIR$/src/com/hp/spring/aop/xml/application.xml</file>
         </fileset>
+        <fileset id="fileset2" name="Application (2)" removed="false">
+          <file>file://$MODULE_DIR$/src/com/hp/spring/aop/zhujie/application.xml</file>
+        </fileset>
       </configuration>
     </facet>
   </component>

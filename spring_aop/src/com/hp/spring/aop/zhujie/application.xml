@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context-4.2.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop-4.2.xsd
+       http://www.springframework.org/schema/tx
+       http://www.springframework.org/schema/tx/spring-tx-4.2.xsd ">
+
+    <!--扫描注解-->
+    <context:component-scan base-package="com.hp.spring.aop.zhujie"></context:component-scan>
+    <!--增强的目标类-->
+    <bean name="user" class="com.hp.spring.aop.xml.bean.User"></bean>
+    <!--包含增强内容的通知类-->
+    <bean name="myadvice" class="com.hp.spring.aop.xml.advice.MyAdvice"></bean>
+    <!--在spring核心配置文件中，开启aop操作-->
+    <aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+
+</beans>
