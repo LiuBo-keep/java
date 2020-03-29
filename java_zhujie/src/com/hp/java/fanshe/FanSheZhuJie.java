@@ -1,9 +1,6 @@
 package com.hp.java.fanshe;
 
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+import java.lang.annotation.*;
 import java.lang.reflect.Method;
 
 /**
@@ -54,6 +51,7 @@ class D{
 
 @Target(value = {ElementType.METHOD,ElementType.TYPE})//定义作用于
 @Retention(RetentionPolicy.RUNTIME)//定义保留策略
+@Documented
 @interface MyAnn{
     String name();
     int age();
