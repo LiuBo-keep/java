@@ -1,0 +1,15 @@
+#指定com包下的日志都是要debug级别的
+#logging:
+#  level:
+#    com: debug
+#在当前磁盘的根路径下创建spring文件夹和里面的log文件夹；使用spring.log作为默认日志文件
+#  file:
+#    path: /spring/log
+#指定完整路径
+#  file:
+#    name: M:/springboot.log
+#不指定路径当前项目下生成springboot.log日志
+#  file:
+#    name: springboot.log
+
+
