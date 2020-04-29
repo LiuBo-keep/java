@@ -65,7 +65,7 @@ public class PreparedStatementTest {
 
             //执行SQL语句
             rs=preparedStatement.executeQuery();
-            
+
             while (rs.next()){
                 String usern = rs.getString("usern");
                 String password1 = rs.getString("password");
