@@ -9,6 +9,7 @@
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200510201544947.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzMDcyMzk5,size_16,color_FFFFFF,t_70)
  
 
-     基于session的认证机制由servlet规范定制，Servlet容器已实现，用户通过HttpSession的操作方法即可实现，如下HttpSeesion相关的操作API：
+     基于session的认证机制由servlet规范定制，Servlet容器已实现，用户通过HttpSession的操作方法即可
+    实现，如下HttpSeesion相关的操作API：
      
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200510202051559.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzMDcyMzk5,size_16,color_FFFFFF,t_70)
