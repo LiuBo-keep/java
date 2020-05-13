@@ -3,6 +3,8 @@ package com.sceurity.springmvc.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
+import java.util.Set;
+
 /**
  * @ClassName UserDto
  * @Description 认证成功后返回的用户详细信息，也就是当前登录用户的信息
@@ -21,4 +23,7 @@ public class UserDto {
     private String password;
     private String fullname;
     private String mobile;
+
+    //用户权限
+    private Set<String> authorities;
 }

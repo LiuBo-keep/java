@@ -30,12 +30,26 @@ public class LoginController {
         UserDto userDto = authenticationService.anthentication(authenticationRequest);
         //用户信息存入session
         session.setAttribute(UserDto.SESSION_USER_KEY,userDto);
+        String s=session.getId();
+        System.out.println(s);
         return userDto.getFullname()+"登录成功";
     }
 
     //测试资源
     @GetMapping(value = "/r/r1",produces = {"text/plain;charset=UTF-8"})
     public String r1(HttpSession session){
+        String fullname=null;
+        Object obj = session.getAttribute(UserDto.SESSION_USER_KEY);
+
+        if (null!=obj){
+            fullname = ((UserDto)obj).getFullname();
+        }else {
+            fullname="匿名";
+        }
+        return fullname+"访问资源1";
+    }
+    @GetMapping(value = "/r/r2",produces = {"text/plain;charset=UTF-8"})
+    public String r2(HttpSession session){
         String fullname=null;
         Object obj = session.getAttribute(UserDto.SESSION_USER_KEY);
 

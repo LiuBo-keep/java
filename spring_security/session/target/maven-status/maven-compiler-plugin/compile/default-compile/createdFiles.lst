@@ -2,6 +2,7 @@ com\sceurity\springmvc\config\WebConfig.class
 com\sceurity\springmvc\dao\AuthenticationDao.class
 com\sceurity\springmvc\dao\AuthenticationDaoImpl.class
 com\sceurity\springmvc\model\UserDto.class
+com\sceurity\springmvc\interceptor\SimpleAuthenticationInterceptor.class
 com\sceurity\springmvc\service\AuthenticationServiceImpl.class
 com\sceurity\springmvc\service\AuthenticationService.class
 com\sceurity\springmvc\controller\LoginController.class
