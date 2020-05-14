@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Arrays;
 
 /**
  * @ClassName Demo1
@@ -64,6 +65,38 @@ public class Demo1 {
         FileOutputStream fileOutputStream = new FileOutputStream("a.txt");
         //向目标文件中写入一个字符
         fileOutputStream.write(97);
+        //释放资源
+        fileOutputStream.close();
+    }
+
+
+    /*
+     一次写多个字节：
+         如果写的第一个字节是正数(0~127)，那么显示的时候会查询ASCII表
+         如果写的第一个字节是负数，那么第一个字节和第二个字节，两个字节组成一个汉字，查询系统默认码表（汉字的由多个字节组成，第一个字节为负数）
+    */
+    //一次写多个写多个字节方式1
+    @Test
+    public void fun3() throws IOException {
+        //构造器会判断a.txt文件是否存在，如果存在直接操作，如果不存在先创建a.txt，再操作
+        FileOutputStream fileOutputStream = new FileOutputStream("a.txt");
+        //要写的内容
+        String str="好啊好啊";
+        //向目标文件中写入多个字符
+        fileOutputStream.write(str.getBytes());
+        //释放资源
+        fileOutputStream.close();
+    }
+
+    //一次写多个写多个字节方式2
+    @Test
+    public void fun4() throws IOException {
+        //构造器会判断a.txt文件是否存在，如果存在直接操作，如果不存在先创建a.txt，再操作
+        FileOutputStream fileOutputStream = new FileOutputStream("a.txt");
+        //要写的内容
+        String str="65";
+        //向目标文件中写入字符数组的一部分
+        fileOutputStream.write(str.getBytes(),0,1);
         //释放资源
         fileOutputStream.close();
     }
