@@ -40,5 +40,6 @@ public class Demo1 {
         StringBuffer stringBuffer = new StringBuffer();
         stringBuffer.append("hello").append("world!").delete(10,11).insert(10,"good");
         System.out.println(stringBuffer);
+        System.out.println(stringBuffer.capacity());
     }
 }
