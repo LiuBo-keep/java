@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.hp</groupId>
+    <artifactId>java_webserive01</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>6</source>
+                    <target>6</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <!--dependencies>
+        &lt;!&ndash;要进行jaxws服务开发&ndash;&gt;
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-frontend-jaxws</artifactId>
+            <version>3.0.1</version>
+        </dependency>
+
+        &lt;!&ndash;内置jetty web服务器&ndash;&gt;
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rf-transports-jetty</artifactId>
+        </dependency>
+    </dependencies>-->
+
+</project>

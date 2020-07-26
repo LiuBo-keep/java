@@ -1,5 +1,7 @@
 package tree;
 
+import org.junit.Test;
+
 /**
  * @ClassName Demo
  * @Description TODO

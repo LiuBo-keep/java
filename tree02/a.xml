@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding='UTF-8'?>
+<ufinterface billtype="vouchergl" filename="vouchergl172981e64e5.xml" isexchange="Y" replace="Y" roottag="sendresult" sender="GZW-0103-GS60" successful="N">
+    <sendresult>
+        <billpk>
+        </billpk>
+        <bdocid>010322897</bdocid>
+        <filename>vouchergl172981e64e5.xml</filename>
+        <resultcode>-32000</resultcode>
+        <resultdescription>单据  010322897  开始处理...
+单据  010322897  处理错误:业务插件处理错误:插件类=nc.bs.gl.pfxx.VoucherPlugin,异常信息:凭证保存中报错:错误:凭证内部错误号：[10044]科目信息有错！：第1条分录</resultdescription>
+        <content>
+        </content>
+    </sendresult>
+</ufinterface>

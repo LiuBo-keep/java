@@ -1,0 +1,27 @@
+1.PackageExplorer  显示项目结构，包，类，及资源
+2.Outline 显示类的结构，方便查找，识别，修改
+3.Console  程序运行的结果在该窗口显示
+4.Problems  显示所有语法及错误所在的位置
+1.如何去掉默认注释：
+Window----Preferences----Java-----Code Style----Code Templates
+选择你不想要的内容，通过右边Edit编辑
+注意：晴只删除注释部分，不是注释部分的不要删除
+
+2.行号的显示与隐藏：
+a.选中工作区最左侧，右键
+b.选Show Line Number
+(显示与隐藏重复上述步骤)
+
+3.字体大小及颜色：
+a.Java代码区域的字体大小和颜色
+window---Preferences---General---Appearance---Colors  And Fonts---java修改---java Edit Text
+b.控制台
+window---Preferences---General---Appearance---Colors  And Fonts---Debug---Console font
+c.其他文件
+window---Preferences---General---Appearance---Colors  And Fonts---Basic --Text Font
+
+4.窗口给弄乱了，怎么办？
+window----Perspective---Reset Perspective
+
+5.控制台找不到了，怎么办？
+window ---Show View----Console
