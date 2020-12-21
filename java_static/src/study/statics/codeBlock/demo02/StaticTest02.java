@@ -1,4 +1,4 @@
-package study.statics.codeBlock.demo01;
+package study.statics.codeBlock.demo02;
 
 /**
  * @ClassName StaticTest02
