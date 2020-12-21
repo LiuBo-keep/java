@@ -16,32 +16,10 @@
         <entry file="file://$PROJECT_DIR$/static.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="FIRST">
-              <first_editor relative-caret-position="408">
-                <caret line="52" column="94" lean-forward="true" selection-start-line="52" selection-start-column="94" selection-end-line="52" selection-end-column="94" />
+              <first_editor relative-caret-position="95">
+                <caret line="23" column="170" selection-start-line="23" selection-start-column="170" selection-end-line="23" selection-end-column="170" />
               </first_editor>
               <second_editor />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Man.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/study/statics/variable/demo03/Man.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="15" column="11" selection-start-line="15" selection-start-column="11" selection-end-line="15" selection-end-column="11" />
-              <folding>
-                <element signature="e#281#282#0" expanded="true" />
-                <element signature="e#317#318#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ManTest.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/study/statics/variable/demo03/ManTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="84">
-              <caret line="13" column="25" selection-start-line="13" selection-start-column="25" selection-end-line="13" selection-end-column="25" />
             </state>
           </provider>
         </entry>
@@ -66,6 +44,8 @@
         <option value="$PROJECT_DIR$/src/study/statics/variable/demo02/ManTest.java" />
         <option value="$PROJECT_DIR$/src/study/statics/variable/demo03/Man.java" />
         <option value="$PROJECT_DIR$/src/study/statics/variable/demo03/ManTest.java" />
+        <option value="$PROJECT_DIR$/src/study/statics/variable/demo04/Man.java" />
+        <option value="$PROJECT_DIR$/src/study/statics/variable/demo04/ManTest.java" />
         <option value="$PROJECT_DIR$/static.md" />
       </list>
     </option>
@@ -276,15 +256,16 @@
       <option name="presentableId" value="Default" />
       <updated>1608517397486</updated>
       <workItem from="1608517403929" duration="4668000" />
-      <workItem from="1608534648748" duration="990000" />
+      <workItem from="1608534648748" duration="1530000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5658000" />
+    <option name="totallyTimeSpent" value="6198000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="848" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="right" id="RestServices" order="3" />
@@ -305,7 +286,7 @@
       <window_info anchor="right" id="Palette&#9;" order="3" />
       <window_info id="Image Layers" order="2" />
       <window_info anchor="right" id="Capture Analysis" order="3" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.1497093" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.3241279" />
       <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.14678285" />
@@ -413,11 +394,31 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/study/statics/variable/demo04/Man.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="361">
+          <caret line="19" column="10" lean-forward="true" selection-start-line="19" selection-start-column="10" selection-end-line="19" selection-end-column="10" />
+          <folding>
+            <element signature="e#281#282#0" expanded="true" />
+            <element signature="e#317#318#0" expanded="true" />
+            <element signature="e#366#367#0" expanded="true" />
+            <element signature="e#444#445#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/study/statics/variable/demo04/ManTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="80">
+          <caret line="13" column="32" lean-forward="true" selection-start-line="13" selection-start-column="32" selection-end-line="13" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/static.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="FIRST">
-          <first_editor relative-caret-position="408">
-            <caret line="52" column="94" lean-forward="true" selection-start-line="52" selection-start-column="94" selection-end-line="52" selection-end-column="94" />
+          <first_editor relative-caret-position="95">
+            <caret line="23" column="170" selection-start-line="23" selection-start-column="170" selection-end-line="23" selection-end-column="170" />
           </first_editor>
           <second_editor />
         </state>
