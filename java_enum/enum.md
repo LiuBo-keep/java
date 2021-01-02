@@ -52,6 +52,5 @@
 |--|--|
 |compareTo|枚举类实现了Comparable接口，这样可以比较两个枚举常量的大小|
 |--|--|
-|clone|枚举类型不能被Clone。为了防止子类实现克隆方法，Enum实现了一个仅抛出CloneNotSupportedException
-异常的不变Clone|
+|clone|枚举类型不能被Clone。为了防止子类实现克隆方法，Enum实现了一个仅抛出CloneNotSupportedException异常的不变Clone|
    
