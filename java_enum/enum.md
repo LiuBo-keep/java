@@ -15,9 +15,9 @@
 
 - 枚举类的实现： 
   
-  -> [JDK1.5之前需要自己定义枚举类]()
+  -> [JDK1.5之前需要自己定义枚举类](https://github.com/LiuBo-keep/java/tree/master/java_enum/src/com/denum/demo/demo01)
  
-  -> [JDK1.5新增的enum关键字用于定义枚举类]()
+  -> [JDK1.5新增的enum关键字用于定义枚举类](https://github.com/LiuBo-keep/java/tree/master/java_enum/src/com/denum/demo/demo02)
   
 - 若枚举类只有一个对象，则可以作为一种单例模式的实现方式
 
@@ -34,21 +34,24 @@
 
 | 方法 | 描述 |
 |--|--|
-| valueOf|  |
-|--|--|
-|toString||
-|--|--|
-|equals||
-|--|--|
-|hashCode||
+| valueOf|传递枚举类型的Class对象和枚举常量名称给静态方法valueOf，会得到与参数匹配的枚举常量|
+|--|--|--|
+|toString|得到当前枚举类常量的名称，你可以通过重写这个方法来使得得到结果更易读|
+|--|--|--|
+|equals|在枚举类型中可以直接使用"=="来比较两个枚举类常量是否相等。Enum提供的这个equals()
+方法，也是直接使用"=="实现的。他的存在是为了在Set，List和Map中使用。注意，equals()是不可变的|
+|--|--|--|
+|hashCode|Enum实现了hashCode()来和equals()保持一致，他也是不可变的|
 |--|--| 
-|getDeclaringClass||
+|getDeclaringClass|得到枚举类常量所属枚举类型的Class对象，可以用它来判断两个枚举类常量是否属于同
+一个枚举类型|
 |--|--|
-|name||
+|name|得到当前枚举类常量的名称，建议优先使用toString()|
 |--|--|
-|ordinal||
+|ordinal|得到当前枚举类常量的次序|
 |--|--|
-|compareTo||
+|compareTo|枚举类实现了Comparable接口，这样可以比较两个枚举常量的大小|
 |--|--|
-|clone||
+|clone|枚举类型不能被Clone。为了防止子类实现克隆方法，Enum实现了一个仅抛出CloneNotSupportedException
+异常的不变Clone|
    
