@@ -34,23 +34,21 @@
 
 | 方法 | 描述 |
 |--|--|
-| valueOf|传递枚举类型的Class对象和枚举常量名称给静态方法valueOf，会得到与参数匹配的枚举常量|
+| [valueOf](https://github.com/LiuBo-keep/java/tree/master/java_enum/src/com/denum/demo/demo03)|传递枚举类型的Class对象和枚举常量名称给静态方法valueOf，会得到与参数匹配的枚举常量|
 |--|--|--|
-|toString|得到当前枚举类常量的名称，你可以通过重写这个方法来使得得到结果更易读|
+|[toString](https://github.com/LiuBo-keep/java/tree/master/java_enum/src/com/denum/demo/demo04)|得到当前枚举类常量的名称，你可以通过重写这个方法来使得得到结果更易读|
 |--|--|--|
-|equals|在枚举类型中可以直接使用"=="来比较两个枚举类常量是否相等。Enum提供的这个equals()
-方法，也是直接使用"=="实现的。他的存在是为了在Set，List和Map中使用。注意，equals()是不可变的|
+|[equals](https://github.com/LiuBo-keep/java/tree/master/java_enum/src/com/denum/demo/demo05)|在枚举类型中可以直接使用"=="来比较两个枚举类常量是否相等。Enum提供的这个equals()方法，也是直接使用"=="实现的。他的存在是为了在Set，List和Map中使用。注意，equals()是不可变的|
 |--|--|--|
-|hashCode|Enum实现了hashCode()来和equals()保持一致，他也是不可变的|
+|[hashCode](https://github.com/LiuBo-keep/java/tree/master/java_enum/src/com/denum/demo/demo06)|Enum实现了hashCode()来和equals()保持一致，他也是不可变的|
 |--|--| 
-|getDeclaringClass|得到枚举类常量所属枚举类型的Class对象，可以用它来判断两个枚举类常量是否属于同
-一个枚举类型|
+|[getDeclaringClass](https://github.com/LiuBo-keep/java/tree/master/java_enum/src/com/denum/demo/demo07)|得到枚举类常量所属枚举类型的Class对象，可以用它来判断两个枚举类常量是否属于同一个枚举类型|
 |--|--|
-|name|得到当前枚举类常量的名称，建议优先使用toString()|
+|[name](https://github.com/LiuBo-keep/java/tree/master/java_enum/src/com/denum/demo/demo08)|得到当前枚举类常量的名称，建议优先使用toString()|
 |--|--|
-|ordinal|得到当前枚举类常量的次序|
+|[ordinal](https://github.com/LiuBo-keep/java/tree/master/java_enum/src/com/denum/demo/demo09)|得到当前枚举类常量的次序|
 |--|--|
-|compareTo|枚举类实现了Comparable接口，这样可以比较两个枚举常量的大小|
+|[compareTo](https://github.com/LiuBo-keep/java/tree/master/java_enum/src/com/denum/demo/demo10)|枚举类实现了Comparable接口，这样可以比较两个枚举常量的大小|
 |--|--|
-|clone|枚举类型不能被Clone。为了防止子类实现克隆方法，Enum实现了一个仅抛出CloneNotSupportedException异常的不变Clone|
+|[clone](https://github.com/LiuBo-keep/java/tree/master/java_enum/src/com/denum/demo/demo11)|枚举类型不能被Clone。为了防止子类实现克隆方法，Enum实现了一个仅抛出CloneNotSupportedException异常的不变Clone|
    
