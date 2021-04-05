@@ -43,15 +43,4 @@ public enum Season {
     public String getDesc() {
         return desc;
     }
-
-    /**
-     * toString方法
-     */
-    @Override
-    public String toString() {
-        return "Season{" +
-                "name='" + name + '\'' +
-                ", desc='" + desc + '\'' +
-                '}';
-    }
 }
