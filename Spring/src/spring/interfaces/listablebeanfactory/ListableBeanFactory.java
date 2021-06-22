@@ -1,8 +1,9 @@
-package spring.interfaces;
+package spring.interfaces.listablebeanfactory;
 
 import spring.ResolvableType;
 import spring.exception.BeansException;
 import spring.exception.NoSuchBeanDefinitionException;
+import spring.interfaces.beanfactory.BeanFactory;
 
 import java.lang.annotation.Annotation;
 import java.util.Map;
@@ -20,7 +21,7 @@ import java.util.Map;
  * 的Bean定义。但是，通常情况下，所有的Bean都是通过外部的配置文件配置的，因此不必担心以上这点区别。需要注意的是，除了getBeanDefinitionCount
  * 和containsBeanDefinition外，此接口中其他方法的实现可能不会太高效，因此，不建议经常调用。
  */
-public interface ListableBeanFactory extends BeanFactory{
+public interface ListableBeanFactory extends BeanFactory {
 
     /**
      * 查看是否包含指定名字的Bean

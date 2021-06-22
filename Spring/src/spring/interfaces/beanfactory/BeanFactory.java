@@ -1,4 +1,4 @@
-package spring.interfaces;
+package spring.interfaces.beanfactory;
 
 import spring.exception.BeanEception;
 import spring.exception.NoSuchBeanDefinitionException;
