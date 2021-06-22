@@ -1,0 +1,2 @@
+
+- 在Java中，有3种套接字类：java.net.Socket、java.net.ServerSocket和DatagramSocket。其中Socket和ServerSocket类建立在TCP基础上，DatagramSocket类建立在UDP基础上。Java网络程序都采用客户/服务通信模式。

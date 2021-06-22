@@ -1,5 +1,7 @@
-import exception.BeanEception;
-import exception.NoSuchBeanDefinitionException;
+package spring.interfaces;
+
+import spring.exception.BeanEception;
+import spring.exception.NoSuchBeanDefinitionException;
 
 /**
  * IOC容器的基本方法
