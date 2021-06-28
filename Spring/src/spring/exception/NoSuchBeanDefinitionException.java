@@ -12,4 +12,8 @@ public class NoSuchBeanDefinitionException extends Exception{
     public NoSuchBeanDefinitionException(){
 
     }
+
+    public NoSuchBeanDefinitionException(String msg){
+        super(msg);
+    }
 }

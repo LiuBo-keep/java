@@ -32,6 +32,7 @@ public abstract class ByteBuffer
         return new HeapByteBuffer(capacity, capacity);
     }
 
+    //
     public static java.nio.ByteBuffer wrap(byte[] array,
                                            int offset, int length) {
         try {

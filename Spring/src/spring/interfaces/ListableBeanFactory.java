@@ -1,9 +1,8 @@
-package spring.interfaces.listablebeanfactory;
+package spring.interfaces;
 
 import spring.ResolvableType;
 import spring.exception.BeansException;
 import spring.exception.NoSuchBeanDefinitionException;
-import spring.interfaces.beanfactory.BeanFactory;
 
 import java.lang.annotation.Annotation;
 import java.util.Map;

@@ -1,7 +1,6 @@
-package spring.interfaces.hierarchicealbeanfactory;
+package spring.interfaces;
 
 import com.sun.istack.internal.Nullable;
-import spring.interfaces.beanfactory.BeanFactory;
 
 /**
  * @Description HierarchicalBeanFactory 提供父容器的访问功能

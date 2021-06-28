@@ -4,8 +4,8 @@ import com.sun.istack.internal.Nullable;
 import spring.exception.BeanDefinitionStoreException;
 import spring.exception.NoSuchBeanDefinitionException;
 import spring.interfaces.*;
-import spring.interfaces.beanfactory.BeanFactory;
-import spring.interfaces.hierarchicealbeanfactory.HierarchicealBeanFactory;
+import spring.interfaces.BeanFactory;
+import spring.interfaces.HierarchicealBeanFactory;
 
 import java.beans.PropertyEditor;
 import java.security.AccessControlContext;
@@ -16,7 +16,7 @@ import java.security.AccessControlContext;
  * @Author 17126
  * @Date 2021/6/22 14:10
  */
-public interface ConfigurableBeanFactory extends HierarchicealBeanFactory {
+public interface ConfigurableBeanFactory extends HierarchicealBeanFactory,SingletonBeanRegistry {
     /**
      * 单例
      */

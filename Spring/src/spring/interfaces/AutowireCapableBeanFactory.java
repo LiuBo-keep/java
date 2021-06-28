@@ -1,9 +1,9 @@
-package spring.interfaces.autowirecapablebeanfactory;
+package spring.interfaces;
 
 import spring.DependencyDescriptor;
 import spring.NamedBeanHolder;
 import spring.exception.BeansException;
-import spring.interfaces.beanfactory.BeanFactory;
+import spring.interfaces.BeanFactory;
 import sun.plugin.com.TypeConverter;
 
 import java.util.Set;
