@@ -1,0 +1,143 @@
+ 1.xml的约束
+        1.为什么需要约束？
+        2.原因：比如现在定义一个person的xml文件，只想要这个文件里面保存人的信息，
+          比如name，age等，但是如果在xml文件中写了一个标签<猫>，发现可以正常显示，
+          因为符合语法规范，但是猫肯定不是人的信息，xml的标签是自定义的，需要技术
+          来规定xml中只能出现的元素，这个时候需要约束。
+        3. xml的约束的技术： dtd的约束，schema约束
+        
+
+2.dtd入门（看懂）
+        1.创建一个文件 后缀名  .dtd
+        2.步骤：
+           a：看xml中有多少个元素（标签），有几个元素，在dtd文件中就写几个 <!ELEMENT>
+           b：判断元素是否是简单元素还是复杂元素
+                ->复杂元素：有子元素的元素
+                    <!ELEMENT 元素名称 （子元素名称）>
+                ->简单元素：没有子元素
+                   <!ELEMENT 元素名称 （#PCDATA）>
+           c：需要在xml文件中引入dtd文件
+                 <!DOCTYPE 根元素名称 SYSTEM "dtd文件路径">
+           d：注意：打开xml文件使用浏览器打开的，浏览器只负责校验xml的语法，不负责校验约束
+                   如果想校验xml的约束，需要使用工具（开发工具）
+
+3.dtd的三种引入方式：
+        1.引入外部dtd文件
+            <!DOCTYPE 根元素名称 SYSTEM "dtd文件路径">
+        2.使用内部的dtd文件
+            <!DOCTYPE 根元素名称 [
+                <!ELEMENT person (name,age)>
+                <!ELEMENT name (#PCDATA)>
+                <!ELEMENT age (#PCDATA)>       
+            ]>
+        3. 使用外部的dtd文件（网络上的dtd文件）
+            <!DOCTYPE 根元素 PUBLIC "DTD名称" "DTD文档的URL">
+
+4.使用dtd定义元素     
+        1.语法：
+           <!ELEMENT 元素名 约束>   
+
+        2.简单元素：没有子元素的元素
+           列：<!ELEMENT name (#PCDATA)>   
+               (#PCDATA):约束name是字符串类型，
+               EMPTY: 元素为空（没有内容），
+               ANY：任意类型   
+
+        3.复杂元素：有子元素的元素 
+            <!ELEMENT 元素名称 （子元素名称）>
+           列： <!ELEMENT person (name,age)> 
+                子元素只能出现一次
+           a：表示子元素出现的次数：
+                 +：表示一次或多次
+                 ?：表示零次或者一次
+                 *:表示零次或者多次
+           b：子元素直接使用逗号进行隔开
+                <!ELEMENT person (name,age)> 
+                  表示元素出现的顺序
+           c：子元素直接使用|隔开
+                <!ELEMENT person (name|age)> 
+                  表示元素只能出现其中任意一个    
+
+5.使用dtd定义属性：
+        1.语法：<!ATTLIST 元素名称
+                 属性名称  属性类型  属性的约束
+        >
+        2.属性类型：
+            a：CDATA :字符串
+                 <!ATTLIST name
+                 ID1  CDATA  #REQUIRED
+                 >
+            b：枚举:表示只能在一定的范围内出现，但只能出现其中的一个（AA|BB|CC）
+                 <!ATTLIST name
+                 ID1  （aa|bb|cc）  #REQUIRED
+                 >
+            c：ID:值只能是字母或下划线开头
+                  <!ATTLIST name
+                 ID1  ID  #REQUIRED
+                 >
+
+        3.属性约束：
+            a： #REQUIRED :属性必须存在
+            b：#IMPLIED :属性可有可无
+            c：#FIXED： 表示一个固定值，属性的值必须是设置的这个值
+            d：直接值：不写属性，使用直接值
+                       写属性，使用设置那个值
+
+        4.  实体的定义：
+            a：语法： <!ENTITY 实体名称 "实体的值">
+            b：列:
+                 在dtd文件中定实体<!ENTITY TEST "ggg">
+                 在xml文件中引用实体： &实体名称;
+                  列：<name>&TEST;</name>
+            c:注意：定义的实体需要写在内部dtd里面，如果写在外部dtd里面，在某些浏览器下，内容
+                  得不到。    
+
+schema约束：
+    1.schema符合xml的语法， xml语句
+       a：一个xml中可以有多个schema，多个schema使用名称空间区分（类似于java包名）
+       b：dtd里面有PCDATA类型，但在schema里面可以支持更多的数据类型
+           列：年龄 只能用整数 在schema可以直接定义一个整数类型
+       c：schema语法更加复杂，schema目前不能代替dtd
+             
+    2.schema的快速入门：
+        a：创建一个schema文件   后缀名为  .xsd
+               根节点<schema>
+        b：在schema文件里面
+              属性   xmlns="http://www.3c.org/2001/XMLSchema"
+                 表示当前xml文件是一个约束文件
+                   targetNamespace="http://www.itcast.cn/20151111"
+                 使用schema约束文件，直接通过这个地址引入约束文件
+                   elementFormDefault="qualified"
+        c:步骤
+              1.看xml中有多少个元素
+                  <element>
+              2.看简单元素和复杂元素
+                  如果复杂元素
+                    <complexType>
+                      <sequence>
+                         子元素
+                      </sequence>
+                    </complexType>   
+              3.简单元素，写在复杂元素的里面
+              <element name="person">
+               <complexType>
+                      <sequence>
+                        <element name="name" type="string"></element>
+                        <element name="age" type="int"></element>
+                      </sequence>
+                    </complexType> 
+              </element>
+              4.在被约束文件里面引入约束文件
+                   <person xmlns:xal="http://www.3c.org/2001/XMLSchema-instance"
+                   xmlns="http://www.itcast.cn/20151111"
+                   xsi:schemaLocation="http://www.itcast.cn/20151111" 1.xml">
+
+                 xmlns:xal="http://www.3c.org/2001/XMLSchema-instance"
+                  表示xml是一个被约束文件
+                  xmlns="http://www.itcast.cn/20151111"
+                    是约束文档里面  targetNamespace
+                 xsi:schemaLocation="http://www.itcast.cn/20151111" 1.xml">
+                    targetNamespace 空格 约束文档的地址路径
+
+                                          
+

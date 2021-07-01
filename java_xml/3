@@ -1,0 +1,143 @@
+xml的解析的简介（写到java代码）重点
+    1.xml是标记型文档
+
+    2.js使用dom解析标记型文档
+         根据html的层级结构，在内存中分配一个树形结构，把html的标签，属性，文本都封装成对象
+         document对象，element对象，属性对象，文本对象，Node节点对象
+
+    3.xml的解析方式（技术） ：dom和sax
+    4. dom方式解析：
+            根据xml的层级结构，在内存中分配一个树形结构，把xml的标签，属性，文本都封装成对象
+            缺点：如果文本过大，造成内存溢出
+            优点：很方便实现增删改操作
+       sax方式解析：
+             采用事件驱动，边读边解析
+                从上到下，一行一行的解析，解析到某一个对象，返回对象名称
+            缺点：不能实现增删改操作  
+            优点：如果文本过大，不会造成内存溢出，方便实现查询操作  
+
+解析xml的解析器;
+    1.不同的公司和组织提供了，针对dom和sax方式的解析器，通过api方式提供
+         a：sun公司提供了针对dom和sax解析器   jaxp  ****
+         b：dom4j组织针对dom和sax解析器    dom4j（实际开发中）*****
+         c：jdom组织针对dom和sax解析器    jdom
+         
+jaxp的api解析器：（使用dom方式解析xml）
+    1.jaxp是javase的一部分
+     
+    2.jaxp解析器在jdk的javax.xml.parsers包里面
+
+    3.四个类：分别是针对dom和sax解析使用的类
+       
+    4.dom：
+         DocumentBuilder：解析器类
+             这个类是一个抽象类，不能new；
+             此类的实体可以从DocumentBuilderFactory.newDocumentBuilder()方法获取
+                 
+                 一个方法：可以解析xml  parse("xml路径") 返回是Document整个文档
+                 返回的document是一个接口，父节点是Node，如果在document里面找不到想要的方法，到Node里面去找
+
+                 在document里面方法
+                       getElementsByTagName(String tagname)
+                       这个方法可以得到标签，返回集合 NodeList
+
+                       ceateElement(String tagname)
+                       创建标签
+
+                       createTextNode(String data)
+                       创建文本
+
+                       appendChild(Node newChild)
+                       把文本添加到标签下面
+
+                       removeChild(Node oldChild)
+                       删除节点
+
+                       getParentNode()
+                       获取父节点
+
+                       getChildNodes()
+                       得到一层的子节点
+
+                       getTextComtent();
+                       得到标签里面的内容，文本
+
+                       setTextComtent();
+                       修改标签里面的内容，文本
+
+                       集合 NodeList 下方法   
+                       getLength()得到集合长度
+                       item(int index)通过下标得到具体的值
+                       列：
+                       集合 list
+                       for(int i=0;i<list.getLength();i++){
+                           list.item(i);
+                       }
+
+        DocumentBuilderFactory：解析器工厂
+             这个类也是一个抽象类，不能new
+             newInstance() 方法 获取  DocumentBuilderFactory的实体
+
+             注意：添加，修改，删除 在最后都要回写：
+
+             TransformerFacyory:回写工厂类
+               这个类也是一个抽象类，不能new
+                 newInstance() 方法 获取  TransformerFacyory的实体
+            Transformer：回写类
+                这个类也是一个抽象类，不能new
+                 此类的实体可以从TransformerFacyory.newTransformer()方法获取
+
+                 回写：
+                   1.通过回写工厂类得到实体：
+                   2.根据回写工厂类得到回写实体；
+                   3.将内存的内容传回文档中：
+                      方法：transform(new DOMSource(document),new StreamResult("文档路径"));
+                   
+
+       案例：
+          1.查询所有name元素的值
+          2. 在第一个p1下面（末尾）添加<sex>nv</sex> 
+          3.修改第一个p1下面的sex内容为男 
+          4.删除在第一个p1下面的sex
+          5.把xml中的所有元素名称打印出来
+
+    5.sax：   
+        SAXParser:解析器类
+        SAXParserFactory：解析器工厂   
+
+    6.sax解析的原理：
+         1.sax方式：边读边解析
+
+         2.在javax.xml.parsers包里面
+              SAXParser:解析器类
+               这个类也是一个抽象类，不能new
+             此类的实体可以从SAXParserFactory.newSAXParser()方法获取
+          
+           一个方法：可以解析xml  parse(File f,DefaultHandler dh);
+               两个参数
+               第一个参数：xml的路径
+               第二个参数：事件处理器
+               当把事件处理器传递进来，相当于在方法里面绑定了一个事件
+                  自动执行事件
+                  .解析分析：
+               当解析到开始标签时候，自动执行startElement方法
+               当解析到文本时候，自动执行characters方法
+               当解析到结束标签时候，自动执行endElement方法
+                
+
+              SAXParserFactory：解析器工厂
+               这个类也是一个抽象类，不能new
+              newInstance() 方法 获取  SAXParserFactory的实体
+
+jaxp的api解析器：（使用sax方式解析xml）  
+     1.sax方式不能实现增删改操作，只能做查询操纵
+     2.打印出整个文档
+         执行parse方法，第一个参数xml路径，第二个参数是 事件处理器
+           创建一个类，继承事件处理器的类
+           重写里面的三个方法
+
+     3.获取到所有的name元素的值
+          定义一个成员变量 flag=true
+          判断开始方法是否示是name 如果是name元素，把flag值设置成true
+          如果flag值是true，在characters方法里面打印内容
+          当执行到结束方法时，把flag值设置为false             

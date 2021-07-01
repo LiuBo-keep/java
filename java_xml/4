@@ -1,0 +1,119 @@
+﻿使用dom4j解析xml
+   1.dom4j 是一个组织，针对xml解析，提供解析器  dom4j
+
+   2.dom4j不是Javase部分  ，想要使用第一步需要怎么做？
+        a：导入dom4j提供的jar包
+
+   3.得到document
+          SAXReader reader=new SAXReader();
+          Document document=reader.read(url);
+
+   4.document的父接口是Node
+        如果在document里面找不到想要的方法，到Node里面去找
+
+   5.document里面的方法：
+      getRootElement();获取根节点， 返回的是Element
+
+   6.Element也是一个接口，父接口是Node
+          Element和Node里面的方法
+              getParent（）；获取父节点
+              addElement（）；添加标签  
+           Element里面的方法 
+               element(qname);
+                   表示获取标签下面的第一个子标签
+                   qname  标签名称
+               elements(qname);
+                  表示获取标签下面这个名称的所有子标签（一层）
+                  qname  标签名称
+               elements();
+                  表示获取标签下面的所有子标签（一层）
+               getText();
+               得到标签里面的值 ，内容  
+               setText() ;
+               设置标签里面的值 ，内容
+               attributeValue("属性名称");
+               得到标签的属性值
+               addAttribute("属性名称","属性值");
+               给标签设置属性和属性值
+              
+               注意：添加，修改，删除 在最后都要回写：
+                 回写类：
+                   格式化：OutputFormat,使用createPrettyPrint方法，表示一个漂亮的格式
+                   使用类XMLWriter  直接new 这个类，传递两个参数
+                    第一个参数是xml文件路径，new FileOutputStream("路径")
+                    第二个参数是格式化类的值
+
+                   
+   7.案例：
+      dom4j查询xml
+           1.查询所有name元素的值
+              步骤：
+                 创建解析器
+                 得到document
+                 得到根节点 getRootElement();
+
+                 得到所有的p1的标签
+                 得到name
+                 得到name里面的值  
+
+            2.查询第一个name元素的值：
+            3.查询第二个name元素的值：
+            4.在第一个p1标签末尾添加一个元素<sex></sex>   (有回写)  
+            5.在第一个p1下面的age标签之前添加<school></school> 
+	        步骤：
+		   创建解析器
+                   得到document
+                   得到根节点 getRootElement();
+		   获取得到第一个p1
+
+		   获取p1下面的所有的元素
+		   使用list里面的方法，在特定位置添加元素
+                     首先创建元素，在元素下面创建文本
+		          使用DocumentHelper类方法cretaeElement()创建标签
+			  把文本添加到标签下面 使用setText("文本内容")方法
+		      list集合里面的方法add（int index，E element）
+		      第一个参数是 位置 下标 从0开始
+		      第二个参数是 要添加的元素
+                     回写
+               6.注意：
+	            可以对得到document的操作和回写xml操作，封装成方法
+		    也可以把转递的文件路径，封装成一个常量
+		    好处：可以提高开发速度，可以提高代码可维护性
+		      比如：想要修改文件路径（名称），这时候只需要修改常量的值就可以了，
+		      其他代码不需要任何改变。
+            7.获取第一个p1里面的属性id1的值
+
+
+使用dom4j支持xpath的操作：
+     1.可以直接获取到某个元素
+
+     2.形式
+        a：/AA/DD/BB
+          表示一层一层的，AA下面DDD下面的BB
+        b：//BB
+           表示和这个名称相同，只要名称是BB，都得到
+        c：/*
+          表示所有元素
+        d：BBB[1]
+          表示第一个BBB元素
+          BBB[last()]
+          表示最后一个BBB元素
+        e：//BBB[@id]
+          表示只要BBB元素上面有id属性，都得到
+        f：//BBB[@id='b1']
+           表示元素名称是BBB，在BBB上面id属性，并且id的属性是b1
+
+使用dom4j支持xpath具体操作：
+     1.默认的情况，dom4j不支持xpath   
+     2.如果想要在dom4j里面使用xpath
+         第一步：引入支持xpath架包   
+     3.在dom4j里面提供了两个方法，用来支持xpath
+         a：selectNodes("xpaht表达式")
+           表示获取多个节点
+         b：slectSingleNode("xpaht表达式")        
+           表示获取一个节点        
+     4.案例：
+        a： 使用xpath实现，查询xml中所有name元素的值    
+               所有name元素是xpath表示：//name
+               使用selectNodes("//name")
+        b： 使用xpath实现,获取第一个name下面的值     
