@@ -2,7 +2,10 @@ package com.hp.spring.aop.xml.advice;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 
-//通知类
+/**
+ * @author 17126
+ * 通知类
+ */
 public class MyAdvice {
     public void before(){
         System.out.println("这是前置通知");
