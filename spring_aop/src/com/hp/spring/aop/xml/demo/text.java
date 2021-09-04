@@ -1,6 +1,7 @@
 package com.hp.spring.aop.xml.demo;
 
 import com.hp.spring.aop.xml.bean.User;
+import org.springframework.aop.framework.ProxyFactoryBean;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -18,6 +19,8 @@ public class text {
         System.out.println("----------------------");
         user.updata();
 
+        ProxyFactoryBean proxyFactoryBean = new ProxyFactoryBean();
+        proxyFactoryBean.getObject();
     }
 }
 
