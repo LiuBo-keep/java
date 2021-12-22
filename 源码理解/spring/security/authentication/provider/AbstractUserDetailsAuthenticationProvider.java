@@ -25,38 +25,54 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.core.userdetails.cache.NullUserCache;
 import org.springframework.util.Assert;
 
+// 抽象用户信息认证
 public abstract class AbstractUserDetailsAuthenticationProvider implements AuthenticationProvider, InitializingBean, MessageSourceAware {
     protected final Log logger = LogFactory.getLog(this.getClass());
     protected MessageSourceAccessor messages = SpringSecurityMessageSource.getAccessor();
     private UserCache userCache = new NullUserCache();
+	// 强制主体为字符串默认为false
     private boolean forcePrincipalAsString = false;
+	// 隐藏未找到的用户异常
     protected boolean hideUserNotFoundExceptions = true;
+	// 默认前检查器
     private UserDetailsChecker preAuthenticationChecks = new AbstractUserDetailsAuthenticationProvider.DefaultPreAuthenticationChecks();
+	// 默认的后身份验证检查
     private UserDetailsChecker postAuthenticationChecks = new AbstractUserDetailsAuthenticationProvider.DefaultPostAuthenticationChecks();
     private GrantedAuthoritiesMapper authoritiesMapper = new NullAuthoritiesMapper();
 
+    // 构造器
     public AbstractUserDetailsAuthenticationProvider() {
     }
-
+	
+	// 其他身份验证检查  UserDetails用户详细信息  
     protected abstract void additionalAuthenticationChecks(UserDetails var1, UsernamePasswordAuthenticationToken var2) throws AuthenticationException;
-
+	
+	// 属性设置后
     public final void afterPropertiesSet() throws Exception {
         Assert.notNull(this.userCache, "A user cache must be set");
         Assert.notNull(this.messages, "A message source must be set");
         this.doAfterPropertiesSet();
     }
-
+	
+	// 验证信息
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
+		// 只能对UsernamePasswordAuthenticationToken进行认证
         Assert.isInstanceOf(UsernamePasswordAuthenticationToken.class, authentication, () -> {
             return this.messages.getMessage("AbstractUserDetailsAuthenticationProvider.onlySupports", "Only UsernamePasswordAuthenticationToken is supported");
         });
+		// 获取用户名
         String username = this.determineUsername(authentication);
+		// 默认已使用缓存
         boolean cacheWasUsed = true;
+		// NullUserCache使用getUserFromCache返回null
         UserDetails user = this.userCache.getUserFromCache(username);
+		// 肯定成立
         if (user == null) {
+			// 将缓存状态改为false
             cacheWasUsed = false;
 
             try {
+				// 检索用户
                 user = this.retrieveUser(username, (UsernamePasswordAuthenticationToken)authentication);
             } catch (UsernameNotFoundException var6) {
                 this.logger.debug("Failed to find user '" + username + "'");
@@ -71,7 +87,9 @@ public abstract class AbstractUserDetailsAuthenticationProvider implements Authe
         }
 
         try {
+			// 用户信息检查
             this.preAuthenticationChecks.check(user);
+			// 其他身份验证检查
             this.additionalAuthenticationChecks(user, (UsernamePasswordAuthenticationToken)authentication);
         } catch (AuthenticationException var7) {
             if (!cacheWasUsed) {
@@ -79,29 +97,39 @@ public abstract class AbstractUserDetailsAuthenticationProvider implements Authe
             }
 
             cacheWasUsed = false;
+			// // 检索用户
             user = this.retrieveUser(username, (UsernamePasswordAuthenticationToken)authentication);
+			// // 用户信息检查
             this.preAuthenticationChecks.check(user);
+			// 其他身份验证检查
             this.additionalAuthenticationChecks(user, (UsernamePasswordAuthenticationToken)authentication);
         }
-
+		
+		// // 用户信息检查
         this.postAuthenticationChecks.check(user);
+		// 缓存用户
         if (!cacheWasUsed) {
             this.userCache.putUserInCache(user);
         }
-
+		
+		// 返回当前认证用户信息
         Object principalToReturn = user;
+		// 不进方法
         if (this.forcePrincipalAsString) {
             principalToReturn = user.getUsername();
         }
-
+		// 创建成功身份验证 并返回 
         return this.createSuccessAuthentication(principalToReturn, authentication, user);
     }
-
+	
+	// 确定用户名
     private String determineUsername(Authentication authentication) {
         return authentication.getPrincipal() == null ? "NONE_PROVIDED" : authentication.getName();
     }
-
+	
+	// 创建成功身份验证 principal 用户信息user  authentication  user
     protected Authentication createSuccessAuthentication(Object principal, Authentication authentication, UserDetails user) {
+		// 创建UsernamePasswordAuthenticationToken
         UsernamePasswordAuthenticationToken result = new UsernamePasswordAuthenticationToken(principal, authentication.getCredentials(), this.authoritiesMapper.mapAuthorities(user.getAuthorities()));
         result.setDetails(authentication.getDetails());
         this.logger.debug("Authenticated user");
@@ -122,7 +150,8 @@ public abstract class AbstractUserDetailsAuthenticationProvider implements Authe
     public boolean isHideUserNotFoundExceptions() {
         return this.hideUserNotFoundExceptions;
     }
-
+	
+	// 检索用户此方法为抽象方法需要子类实现
     protected abstract UserDetails retrieveUser(String var1, UsernamePasswordAuthenticationToken var2) throws AuthenticationException;
 
     public void setForcePrincipalAsString(boolean forcePrincipalAsString) {
