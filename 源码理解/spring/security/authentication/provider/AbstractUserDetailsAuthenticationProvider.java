@@ -72,7 +72,9 @@ public abstract class AbstractUserDetailsAuthenticationProvider implements Authe
             cacheWasUsed = false;
 
             try {
-				// 检索用户
+				// 检索用户 
+				// 使用DaoAuthenticationProvider类中的检索方法
+				// 通过用户名获取用户信息
                 user = this.retrieveUser(username, (UsernamePasswordAuthenticationToken)authentication);
             } catch (UsernameNotFoundException var6) {
                 this.logger.debug("Failed to find user '" + username + "'");
@@ -89,7 +91,7 @@ public abstract class AbstractUserDetailsAuthenticationProvider implements Authe
         try {
 			// 用户信息检查
             this.preAuthenticationChecks.check(user);
-			// 其他身份验证检查
+			// 其他身份验证检查(使用DaoAuthenticationProvider类中的实现 对密码进行校验)
             this.additionalAuthenticationChecks(user, (UsernamePasswordAuthenticationToken)authentication);
         } catch (AuthenticationException var7) {
             if (!cacheWasUsed) {

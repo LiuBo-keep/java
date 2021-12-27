@@ -18,6 +18,8 @@ import org.springframework.security.core.SpringSecurityMessageSource;
 import org.springframework.util.Assert;
 import org.springframework.util.CollectionUtils;
 
+// 在SpringOauth2.0中，所有的认证服务，均通过ProviderManager认证管理中心进行认证。通过分析ProviderManager，
+// 可以理解SpringOauth2.0认证的细节。也是整个流程中最核心的环节之一。
 public class ProviderManager implements AuthenticationManager, MessageSourceAware, InitializingBean {
     private static final Log logger = LogFactory.getLog(ProviderManager.class);
 	// 	认证事件发布者 用户授权成功或失败的通知机制
@@ -43,13 +45,20 @@ public class ProviderManager implements AuthenticationManager, MessageSourceAwar
 	
 	// 构造器 初始化 认证程序 认证管理器
     public ProviderManager(List<AuthenticationProvider> providers, AuthenticationManager parent) {
+		// 事件推送
         this.eventPublisher = new ProviderManager.NullEventPublisher();
+		// 认证方式集合
         this.providers = Collections.emptyList();
+		// 消息源
         this.messages = SpringSecurityMessageSource.getAccessor();
+		// 身份验证后擦除凭据 默认为true
         this.eraseCredentialsAfterAuthentication = true;
         Assert.notNull(providers, "providers list cannot be null");
+		// 认证方式流程
         this.providers = providers;
+		// 认证管理器
         this.parent = parent;
+		// 检查状态
         this.checkState();
     }
 
@@ -61,20 +70,28 @@ public class ProviderManager implements AuthenticationManager, MessageSourceAwar
         Assert.isTrue(this.parent != null || !this.providers.isEmpty(), "A parent AuthenticationManager or a list of AuthenticationProviders is required");
         Assert.isTrue(!CollectionUtils.contains(this.providers.iterator(), (Object)null), "providers list cannot contain null values");
     }
-
+	
+	// 认证
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
+		// 获取认证的class对象
         Class<? extends Authentication> toTest = authentication.getClass();
         AuthenticationException lastException = null;
         AuthenticationException parentException = null;
         Authentication result = null;
         Authentication parentResult = null;
+		// 当前位置
         int currentPosition = 0;
+		// 获取认证流程的个数
         int size = this.providers.size();
+		// 获取认证流程迭代器
         Iterator var9 = this.getProviders().iterator();
-
+		// 对集合中的认证流程进行迭代
         while(var9.hasNext()) {
+			// 获取认证流程
             AuthenticationProvider provider = (AuthenticationProvider)var9.next();
+			// 判断当前认证流程和认证方式是否匹配
             if (provider.supports(toTest)) {
+				// 日志是否启用跟踪
                 if (logger.isTraceEnabled()) {
                     Log var10000 = logger;
                     String var10002 = provider.getClass().getSimpleName();
@@ -83,7 +100,10 @@ public class ProviderManager implements AuthenticationManager, MessageSourceAwar
                 }
 
                 try {
+					// 使用当前认证流程对当前认证方式进行认证
                     result = provider.authenticate(authentication);
+					// 认证接口不为空
+					// 将结果信息拷贝到authentication中，结束迭代
                     if (result != null) {
                         this.copyDetails(authentication, result);
                         break;
@@ -96,9 +116,10 @@ public class ProviderManager implements AuthenticationManager, MessageSourceAwar
                 }
             }
         }
-
+		// 结果为空并且认证管理器不为空
         if (result == null && this.parent != null) {
             try {
+				// 进行认证
                 parentResult = this.parent.authenticate(authentication);
                 result = parentResult;
             } catch (ProviderNotFoundException var12) {
@@ -107,16 +128,19 @@ public class ProviderManager implements AuthenticationManager, MessageSourceAwar
                 lastException = var13;
             }
         }
-
+		// 认证结果不为空
         if (result != null) {
+			// 身份验证后擦除凭据是否为true 并且认证方式是否是CredentialsContainer子类
             if (this.eraseCredentialsAfterAuthentication && result instanceof CredentialsContainer) {
+				// 凭证擦除
                 ((CredentialsContainer)result).eraseCredentials();
             }
-
+			// parentResult为空
             if (parentResult == null) {
+				// 发布认证成功事件
                 this.eventPublisher.publishAuthenticationSuccess(result);
             }
-
+			// 返回结果
             return result;
         } else {
             if (lastException == null) {
@@ -130,8 +154,10 @@ public class ProviderManager implements AuthenticationManager, MessageSourceAwar
             throw lastException;
         }
     }
-
+	
+	// 准备异常
     private void prepareException(AuthenticationException ex, Authentication auth) {
+		// 发布认证失败事件
         this.eventPublisher.publishAuthenticationFailure(ex, auth);
     }
 
